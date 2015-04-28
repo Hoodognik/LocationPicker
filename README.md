@@ -5,7 +5,7 @@ http://logicify.github.io/jquery-locationpicker-plugin/
 
 Installation.
 You need to register a widget into your plugin Plugin.php.
-
+<pre>
 public function registerFormWidgets()
 {
    return [
@@ -15,7 +15,7 @@ public function registerFormWidgets()
        ],
    ];
 }
-
+</pre>
 Usage.
 
 You can add this widget to your forms simply by decalring the field type as w2y-locationpicker.
