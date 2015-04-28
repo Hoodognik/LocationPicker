@@ -1,0 +1,100 @@
+<?php
+$map_options['map_height'] = '400px';
+$map_options['map_width'] = '100%';
+$map_options['field_lattitude'] = true;
+$map_options['field_longitude'] = true;
+$map_options['field_radius'] = true;
+$map_options['scrollwheel'] = true;
+$map_options['latitude'] = '56.5010397';
+$map_options['longitude'] = '84.99245059999998';
+$map_options['radius'] = '100';
+$map_options['zoom'] = 15;
+$map_options['update_mod_tab'] = false;
+$map_options['update_mod_modal'] = false;
+
+if($field->options)
+foreach($field->options as $key => $option )
+	$map_options[$key]=$option;
+
+if(e($value)){
+		$latlong = explode(',',e($value));
+		$map_options['latitude'] = $latlong[0];
+		$map_options['longitude'] = $latlong[1];
+	}
+?>
+
+
+<div class="w2y_location_picker" id="<?= $name ?>_w2y_location_picker">
+    <?php if ($this->previewMode): ?>
+      <?/*  <div class="form-control"><?= e($value) ?></div> */ ?>
+    <?php else: ?>
+	<div class="form-group">
+		<input id="<?= $this->getId('textarea') ?>_w2y_location_picker_autocomplete" value="" class="form-control" <?= $field->getAttributes() ?>/>
+	</div>
+	<div class="form-group">
+		<div id="<?= $this->getId('textarea') ?>_w2y_location_picker_map_canvas" style="height:<?= $map_options['map_height'] ?> !important; width: <?= $map_options['map_width'] ?> !important; "></div>
+	</div>
+		<?php if($map_options['field_lattitude']): ?>
+		<div class="form-group">
+		<label>Latitude</label>
+		<input class="form-control" type="text" id="<?= $this->getId('textarea') ?>_w2y_location_picker_locationLatitude">
+		</div>
+		<?php endif; ?>
+		<?php if($map_options['field_longitude']): ?>
+		<div class="form-group">
+		<label>Longitude</label>
+		<input class="form-control" type="text" id="<?= $this->getId('textarea') ?>_w2y_location_picker_locationLongitude">
+		</div>
+		<?php endif; ?>
+		<?php if($map_options['field_radius']): ?>
+		<div class="form-group">
+		<label>Radius</label>
+		<input class="form-control" type="text" id="<?= $this->getId('textarea') ?>_w2y_location_picker_radius">
+		</div>
+		<?php endif; ?>
+		<input class="form-control" name="<?= $name ?>" type="hidden" value="<?= e($value) ?>" id="<?= $this->getId('textarea') ?>">
+    <?php endif ?>
+
+	<?php
+	debug($field);
+	 ?>
+</div>
+<script>
+$( document ).ready(function() {
+
+	$('#<?= $this->getId('textarea') ?>_w2y_location_picker_autocomplete').bind('keypress keydown keyup', function(e){
+            if (e.keyCode == 13) { e.preventDefault() }
+        })
+		
+	$('#<?= $this->getId('textarea') ?>_w2y_location_picker_map_canvas').locationpicker({
+	location: {latitude: <?= $map_options['latitude'] ?>, longitude: <?= $map_options['longitude'] ?>},
+	zoom: <?= $map_options['zoom'] ?>,
+    scrollwheel: <?= $map_options['scrollwheel'] ?>,
+	radius: <?= $map_options['radius'] ?>,
+	inputBinding: {
+		latitudeInput: $('#<?= $this->getId('textarea') ?>_w2y_location_picker_locationLatitude'),
+		longitudeInput: $('#<?= $this->getId('textarea') ?>_w2y_location_picker_locationLongitude'),
+		radiusInput: $('#<?= $this->getId('textarea') ?>_w2y_location_picker_radius'),
+		locationNameInput: $('#<?= $this->getId('textarea') ?>_w2y_location_picker_autocomplete')        
+	},
+	enableAutocomplete: true,
+	onchanged: function(currentLocation, radius, isMarkerDropped) {
+		$('#<?= $this->getId('textarea') ?>').val(currentLocation.latitude + "," + currentLocation.longitude);
+	},
+    oninitialized: function(component) {
+        var addressComponents = $(component).locationpicker('map').location.addressComponents;
+    }
+});
+<?php if($map_options['update_mod_tab']): ?>
+		
+	$('<?php if($map_options['update_mod_tab'] === true): ?>a[data-toggle="tab"]<?php else : ?> <?= $map_options['update_mod_tab'] ?> <?php endif; ?>').on('shown.bs.tab', function (e) {
+		$('#<?= $this->getId('textarea') ?>_w2y_location_picker_map_canvas').locationpicker('autosize');
+	});
+<?php endif; ?>
+<?php if($map_options['update_mod_modal']): ?>
+	$('<?php if($map_options['update_mod_modal'] === true): ?>a[data-toggle="modal"]<?php else : ?> <?= $map_options['update_mod_modal'] ?> <?php endif; ?>').on('shown.bs.modal', function (e) {
+		$('#<?= $this->getId('textarea') ?>_w2y_location_picker_map_canvas').locationpicker('autosize');
+	});
+<?php endif; ?>
+});
+</script>
