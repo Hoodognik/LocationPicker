@@ -38,8 +38,8 @@ contact-map:
        update_mod_tab: false
        update_mod_modal: false
 </pre>
-map_height - height maps (values are in px or %).
-map_width - widht maps (values are in px or %).
+map_height - height maps (values are in px or %).<br>
+map_width - widht maps (values are in px or %).<br>
 field_lattitude - show / hide the "latitude" in the backend (values true / false).
 field_longitude - show / hide the "longitude" in the backend (values true / false).
 field_radius - show / hide the "radius" in the backend (values true / false).
