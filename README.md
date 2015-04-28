@@ -54,3 +54,5 @@ update_mod_tab: -<br>
 update_mod_modal: -<br>
 if you want to use this widget to bootstrap tabs, or bootstrap modal window, you use mozheet update_mod_tab and update_mod_modal to autosize maps after opening tabs / modal window. if the value of this option will be equal to the truth, the map will be updated when you open any tabs / modal window.<br>
 You can specify as the value of the selector, or more selectors separated by a comma ",". in this case the card will be updated only when you open your selected tabs / modal window.<br>
+
+Developers: Evgeny Chernov, Sergey Gorkovenko
