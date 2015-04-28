@@ -1,3 +1,4 @@
+<h1>LocationPicker - Octobercms formwidget</h1>
 This widget allows to easily find and select a location on the Google map. Along with a single point selection, it allows to choose an area by providing its center and the radius.<br>
 The other feature of the widget is automatic address resolver which allows to get address line from the selected latitude and longitude. The widget also supports searching by address typed into the bound input element which uses auto-complete feature from Google API to make the search process easier. In this case the marker will be automatically positioned on the map after successful address resolution.<br>
 This widget uses jquery locationpicker plugin.<br>
