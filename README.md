@@ -20,6 +20,7 @@ Usage.
 
 You can add this widget to your forms simply by decalring the field type as w2y-locationpicker.
 The default values are displayed, as shown in the example:
+<pre>
 contact-map:
    label: Address
    type: w2y-locationpicker
@@ -36,7 +37,7 @@ contact-map:
        zoom: 15
        update_mod_tab: false
        update_mod_modal: false
-
+</pre>
 map_height - height maps (values are in px or %).
 map_width - widht maps (values are in px or %).
 field_lattitude - show / hide the "latitude" in the backend (values true / false).
